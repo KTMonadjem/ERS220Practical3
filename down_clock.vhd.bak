@@ -1,0 +1,26 @@
+library IEEE
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+
+entity down_clock is
+port (	in_clk : in std_logic;
+			out_clk: out std_logic);
+end down_clock;
+
+architecture down_clock_arch of down_clock is
+	variable count : integer := 27000000;
+begin
+	down : process (in_clk)
+	begin
+		if(rising_edge(in_clk)) then
+			if( count > 0 ) then
+				count <= count - 1;
+				out_clk <= 0;
+			else 
+				count <= 27000000;
+				out_clk <= 1;
+			end if;
+		end if;
+	end down;
+end down_clock_arch;

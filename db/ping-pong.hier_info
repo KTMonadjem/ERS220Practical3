@@ -1,0 +1,208 @@
+|ping_pong
+RB_in => R1.IN1
+RB_in => R1.IN1
+RB_in => R1.IN1
+RB_in => R0.IN1
+RB_in => L_win.IN1
+RB_in => R0.IN0
+RB_in => L_win.IN1
+RB_in => L_win.IN1
+LB_in => R1.IN1
+LB_in => R1.IN1
+LB_in => R1.IN1
+LB_in => R0.IN1
+LB_in => R0.IN1
+LB_in => R_win.IN1
+LB_in => R0.IN1
+LB_in => R_win.IN1
+LB_in => R_win.IN1
+CLK => down_clock:downclk.in_clk
+rst_in => shift_register_dual4:reg2.clr
+rst_in => shift_register_dual4:reg1.clr
+seven_R[0] <= counter:R_counter.a[0]
+seven_R[1] <= counter:R_counter.a[1]
+seven_R[2] <= counter:R_counter.a[2]
+seven_R[3] <= counter:R_counter.a[3]
+seven_R[4] <= counter:R_counter.a[4]
+seven_R[5] <= counter:R_counter.a[5]
+seven_R[6] <= counter:R_counter.a[6]
+seven_L[0] <= counter:L_counter.a[0]
+seven_L[1] <= counter:L_counter.a[1]
+seven_L[2] <= counter:L_counter.a[2]
+seven_L[3] <= counter:L_counter.a[3]
+seven_L[4] <= counter:L_counter.a[4]
+seven_L[5] <= counter:L_counter.a[5]
+seven_L[6] <= counter:L_counter.a[6]
+seven_a[0] <= <VCC>
+seven_a[1] <= <VCC>
+seven_a[2] <= <VCC>
+seven_a[3] <= <VCC>
+seven_a[4] <= <VCC>
+seven_a[5] <= <VCC>
+seven_a[6] <= <VCC>
+seven_b[0] <= <VCC>
+seven_b[1] <= <VCC>
+seven_b[2] <= <VCC>
+seven_b[3] <= <VCC>
+seven_b[4] <= <VCC>
+seven_b[5] <= <VCC>
+seven_b[6] <= <VCC>
+L0 <= shift_register_dual4:reg2.q0
+L1 <= shift_register_dual4:reg2.q1
+L2 <= shift_register_dual4:reg2.q2
+L3 <= shift_register_dual4:reg2.q3
+L4 <= shift_register_dual4:reg1.q0
+L5 <= shift_register_dual4:reg1.q1
+L6 <= shift_register_dual4:reg1.q2
+L7 <= shift_register_dual4:reg1.q3
+x0 <= shift_register_dual4:reg1.q3
+x1 <= MR.DB_MAX_OUTPUT_PORT_TYPE
+x2 <= ML.DB_MAX_OUTPUT_PORT_TYPE
+x3 <= shift_register_dual4:reg2.q0
+
+
+|ping_pong|down_clock:downclk
+in_clk => out_clk~reg0.CLK
+in_clk => \down:count[0].CLK
+in_clk => \down:count[1].CLK
+in_clk => \down:count[2].CLK
+in_clk => \down:count[3].CLK
+in_clk => \down:count[4].CLK
+in_clk => \down:count[5].CLK
+in_clk => \down:count[6].CLK
+in_clk => \down:count[7].CLK
+in_clk => \down:count[8].CLK
+in_clk => \down:count[9].CLK
+in_clk => \down:count[10].CLK
+in_clk => \down:count[11].CLK
+in_clk => \down:count[12].CLK
+in_clk => \down:count[13].CLK
+in_clk => \down:count[14].CLK
+in_clk => \down:count[15].CLK
+in_clk => \down:count[16].CLK
+in_clk => \down:count[17].CLK
+in_clk => \down:count[18].CLK
+in_clk => \down:count[19].CLK
+in_clk => \down:count[20].CLK
+in_clk => \down:count[21].CLK
+in_clk => \down:count[22].CLK
+in_clk => \down:count[23].CLK
+in_clk => \down:count[24].CLK
+in_clk => \down:count[25].CLK
+in_clk => \down:count[26].CLK
+in_clk => \down:count[27].CLK
+in_clk => \down:count[28].CLK
+in_clk => \down:count[29].CLK
+in_clk => \down:count[30].CLK
+in_clk => \down:count[31].CLK
+out_clk <= out_clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|shift_register_dual4:reg2
+clk => i3.CLK
+clk => i2.CLK
+clk => i1.CLK
+clk => i0.CLK
+clr => ~NO_FANOUT~
+dsl => Selector3.IN0
+dsr => Selector0.IN0
+s0 => state.IN0
+s0 => state.IN0
+s0 => state.IN0
+s1 => state.IN1
+s1 => state.IN1
+s1 => state.IN1
+d0 => Selector0.IN1
+d1 => Selector1.IN0
+d2 => Selector2.IN0
+d3 => Selector3.IN1
+q0 <= i0.DB_MAX_OUTPUT_PORT_TYPE
+q1 <= i1.DB_MAX_OUTPUT_PORT_TYPE
+q2 <= i2.DB_MAX_OUTPUT_PORT_TYPE
+q3 <= i3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|shift_register_dual4:reg1
+clk => i3.CLK
+clk => i2.CLK
+clk => i1.CLK
+clk => i0.CLK
+clr => ~NO_FANOUT~
+dsl => Selector3.IN0
+dsr => Selector0.IN0
+s0 => state.IN0
+s0 => state.IN0
+s0 => state.IN0
+s1 => state.IN1
+s1 => state.IN1
+s1 => state.IN1
+d0 => Selector0.IN1
+d1 => Selector1.IN0
+d2 => Selector2.IN0
+d3 => Selector3.IN1
+q0 <= i0.DB_MAX_OUTPUT_PORT_TYPE
+q1 <= i1.DB_MAX_OUTPUT_PORT_TYPE
+q2 <= i2.DB_MAX_OUTPUT_PORT_TYPE
+q3 <= i3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|register_2bit:state_reg
+d0 => q0~reg0.DATAIN
+d1 => q1~reg0.DATAIN
+clk => q1~reg0.CLK
+clk => q0~reg0.CLK
+q0 <= q0~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q1 <= q1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|register_2bit:keep_reg
+d0 => q0~reg0.DATAIN
+d1 => q1~reg0.DATAIN
+clk => q1~reg0.CLK
+clk => q0~reg0.CLK
+q0 <= q0~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q1 <= q1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|counter:L_counter
+input => a[0]~reg0.CLK
+input => a[1]~reg0.CLK
+input => a[2]~reg0.CLK
+input => a[3]~reg0.CLK
+input => a[4]~reg0.CLK
+input => a[5]~reg0.CLK
+input => a[6]~reg0.CLK
+input => c[0].CLK
+input => c[1].CLK
+input => c[2].CLK
+input => c[3].CLK
+a[0] <= a[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[1] <= a[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[2] <= a[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[3] <= a[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[4] <= a[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[5] <= a[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[6] <= a[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ping_pong|counter:R_counter
+input => a[0]~reg0.CLK
+input => a[1]~reg0.CLK
+input => a[2]~reg0.CLK
+input => a[3]~reg0.CLK
+input => a[4]~reg0.CLK
+input => a[5]~reg0.CLK
+input => a[6]~reg0.CLK
+input => c[0].CLK
+input => c[1].CLK
+input => c[2].CLK
+input => c[3].CLK
+a[0] <= a[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[1] <= a[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[2] <= a[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[3] <= a[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[4] <= a[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[5] <= a[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+a[6] <= a[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

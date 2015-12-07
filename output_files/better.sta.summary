@@ -1,0 +1,53 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Setup 'CLK'
+Slack : -4.014
+TNS   : -108.040
+
+Type  : Setup 'down_clock:downclk|out_clk'
+Slack : -1.257
+TNS   : -6.787
+
+Type  : Setup 'R_win'
+Slack : -0.509
+TNS   : -4.373
+
+Type  : Setup 'L_win'
+Slack : -0.463
+TNS   : -3.495
+
+Type  : Hold 'down_clock:downclk|out_clk'
+Slack : -0.218
+TNS   : -0.436
+
+Type  : Hold 'CLK'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Hold 'L_win'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Hold 'R_win'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'CLK'
+Slack : -1.631
+TNS   : -41.957
+
+Type  : Minimum Pulse Width 'down_clock:downclk|out_clk'
+Slack : -0.611
+TNS   : -17.108
+
+Type  : Minimum Pulse Width 'L_win'
+Slack : -0.611
+TNS   : -13.442
+
+Type  : Minimum Pulse Width 'R_win'
+Slack : -0.611
+TNS   : -13.442
+
+------------------------------------------------------------

@@ -1,0 +1,99 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity ping_pong is
+port ( 	RB, LB	: in std_logic;
+			CLK		: in std_logic;
+			L0, L1, L2, L3, L4, L5, L6, L7 : out std_logic);
+end ping_pong;
+
+architecture behavior of ping_pong is
+	
+	component shift_register_dual4
+	port(
+			clk, clr	: in	std_logic;
+			dsl, dsr : in 	std_logic;
+			s0, s1	: in 	std_logic;
+			d0, d1, d2, d3 : in std_logic;
+			q0, q1, q2, q3 : out std_logic );
+	end component;
+	
+	component register_2bit
+	port ( 	d0, d1	: in std_logic;
+			clk		: in std_logic;
+			q0, q1	: out std_logic);
+	end component;
+	
+	component down_clock is
+		port (	in_clk : in std_logic;
+					out_clk: out std_logic);
+	end component;
+	
+	signal S0, S1, R0, R1 : std_logic; -- state and next state variables
+	signal LL, RL			 : std_logic; -- Left and Right light signals
+	signal C2, C1			 : std_logic; -- cross connections for shift registers
+	signal ML, MR			 : std_logic; -- move left and move right
+	signal DCLK				 : std_logic; -- reduced frequency clock
+	signal a1, a2			 : std_logic;
+	signal b1, b2			 : std_logic;
+	
+	
+	
+begin
+
+	downclk : down_clock port map (	in_clk => clk,
+												out_clk => DClK);
+	
+	a1 <=  '0';
+	a2 <=  '0';
+	
+	reg1 : shift_register_dual4 port map (	clk => DCLK,
+														clr => '0',
+														d0 => '0', d1 => '0',
+														d2 => '0', d3 => '0',
+														q0 => LL,
+														q1 => L1, q2 => L2, 
+														q3 => C1,
+														s0 => MR,
+														s1 => ML,
+														dsl => C2,
+														dsr => b1);
+	L0 <= LL;
+	L3 <= C1;
+	
+	reg2 : shift_register_dual4 port map (	clk => DCLK,
+														clr => '0',
+														d0 => '0', d1 => '0',
+														d2 => '0', d3 => '0',
+														q0 => C2,
+														q1 => L5, q2 => L6, 
+														q3 => RL,
+														s0 => MR,
+														s1 => ML,
+														dsl => b2,
+														dsr => C1);
+	L4 <= C2;
+	L7 <= RL;
+	
+	state_reg : register_2bit port map ( 	clk => DCLK,
+														d0 => R0,
+														d1 => R1,
+														q0 => S0,
+														q1 => S1);
+	
+	keep_reg : register_2bit port map (	clk => DCLK,
+													d0 => a1,
+													d1 => a2,
+													q0 => b1,
+													q1 => b2);
+	
+	
+	R1 <= ((not s1) and (not s0) and (not LB)) or ((not s1) and s0 and (not RB))
+			or ((not LL) and (not LB) and (s1 and s0) and (not RB))
+			or ( s1 and (not s0) and (not RB) and (not LB) and (not RL));
+	R0 <= ((not s1) and s0) or (s1 and s0 and (not RB) and (not LB) and (not LL))
+			or (s1 and (not s0) and (LB or (RB and (not LB) and RL)));
+	
+	
+	
+end behavior;

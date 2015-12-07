@@ -1,0 +1,37 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity shift_register_dual4 is
+begin
+	port (b_left 	: in 	std_logic;
+			clk, clr	: in	std_logic;
+			data_in	: in 	std_logic_vector (3 downto 0);
+			dsl, dsr : in 	std_logic;
+			s0, s1	: in 	std_logic;
+			data_out	: out	std_logic_vector (3 downto 0));
+end shift_register_dual4;
+
+architecture behavior of shift_register_dual4 is
+	type state_type is (L, R);
+	signal ps, ns : state_type;
+	signal internal : std_logic_vector (3 downto 0);
+begin
+	
+	shift: process (clk, ps )
+	begin
+		if(rising_edge(clk)) then
+			case ps is
+				when L =>
+					internal[0] <= internal[1];
+					internal[1] <= internal[2];
+					internal[2] <= internal[3];
+					internal[3] <= dsl;
+				when R =>
+					internal[3] <= internal[2];
+					internal[2] <= internal[1];
+					internal[1] <= internal[0];
+					internal[0] <= dsr;
+			end case;
+		end if;
+	end process shift;
+	
